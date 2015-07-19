@@ -1,0 +1,51 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+    
+    public static boolean isPrime(long num){
+        for(long i = 2; i <= Math.sqrt(num); i++){
+            if(num%i == 0){
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    public static long primeGreaterThan(long num){
+        for(long i = num+1; 1==1; i++){
+            if(isPrime(i)){
+                return i;
+            }
+        }
+    }
+    
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner in = new Scanner(System.in);
+        
+        int tests = in.nextInt();
+        
+        long[] primes = new long[10001];
+        long temp = 1;
+        for(int i = 1; i<primes.length; i++){
+                temp = primeGreaterThan(temp);
+                primes[i] = temp;
+            }
+   
+        
+        
+        for(int test = 1; test<=tests; test++){
+            
+            int n = in.nextInt();
+            System.out.println(primes[n]);
+            
+            
+            
+        }
+        
+    }
+}
