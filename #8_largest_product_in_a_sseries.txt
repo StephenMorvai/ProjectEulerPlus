@@ -1,0 +1,62 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        
+        Scanner in = new Scanner(System.in);
+        
+        int t = in.nextInt();
+        
+        for( int i = 0; i < t; i++){
+            
+            int n = in.nextInt();
+            int k = in.nextInt();
+            
+            String num;
+            num = in.next();
+            
+            
+            long product = 1;
+            long greatest = 1;
+            
+            for(int j = 0; j < k; j++){
+                product*= num.charAt(j) - '0';
+            }
+            //System.out.println(product + "");
+            
+            greatest = product;
+            
+            for(int q = k; q < n; q++){
+                if(num.charAt(q-k) != '0'){
+                    product/= num.charAt(q - k) - '0';
+                }else{
+                    product = 1;
+                    for(int w = q-k+1; w < q; w++){
+                        product*= num.charAt(w) - '0';
+                    }
+                }
+
+                
+                product*= num.charAt(q) - '0';
+                
+                //System.out.println(product + "");
+                
+                if(product>greatest){
+                    greatest = product;
+                }
+            }
+            
+            System.out.println(greatest);
+            
+        }
+        
+        
+        
+    }
+}
