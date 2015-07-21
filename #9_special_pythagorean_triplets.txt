@@ -1,0 +1,91 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner in = new Scanner(System.in);
+        
+        int t = in.nextInt();
+        
+        for(int q = 0; q<t; q++){
+            
+            int N = in.nextInt();
+            
+            /*
+            Using euclid's formula
+
+            a = m^2-n^2 = 2^2 - 1^2 = 3
+            b = 2mn = 2*2*1 = 4
+            c = m^2+n^2 = 2^2 + 1^2 = 5
+            
+            The condition states that m+n must be odd.
+            
+            once a coprime combination is found, the ones that are mutiples are just ka, kb, kc. 
+
+            For the purpose of this question product*= k^3
+            
+
+            N = a + b + c
+            N = m^2 - n^2 + 2mn + m^2 + n^2
+            N = 2m^2 + 2mn
+            N = 2m(m+n) where m+n is odd
+             in the case where a,b,c = ka,kb,kc
+            N = ka + kb + kc
+            N = km^2 - kn^2 + 2kmn + km^2 + kn^2
+            N = 2km^2 + 2kmn
+            N = 2km(m+n) where m+n is odd
+
+            */
+
+            long max = -1;
+            
+            
+            for(int m = 1; m < Math.sqrt(N); m++){
+                
+                for(int n = (m%2) + 1 ; n < m; n+=2){
+                    
+                    long qw = 2*m*(m+n);
+                    long k = (long)N/qw;
+
+                    
+                    if(N%qw== 0){
+                        long kcubed = k*k*k;
+                        long product = (m*m-n*n)*(2*m*n)*(m*m+n*n);
+                        long result = kcubed*product;
+                        if(max < result){   
+                            max = result;
+                        }
+                        //System.out.println(N + ", " + max);
+                    }   
+                } 
+            }
+            
+            //System.out.println(N + ", " + max);
+            System.out.println(max);
+            
+            
+        }
+        
+        
+        
+    }
+}
+
+
+
+/*
+Some examples of pythogorean triplets
+
+
+(3a)^2 + (4a)^2 = (5a)^2
+
+(5a)^2 + (12a)^2 = (13a)^2
+
+
+
+*/
