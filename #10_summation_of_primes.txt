@@ -1,0 +1,73 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+    
+    
+    public static boolean isPrime(long num){
+        for(long i = 2; i <= Math.sqrt(num); i++){
+            if(num%i == 0){
+                return false;
+            }
+        }
+        return true;
+    }
+    /*
+        Can determine if a number is prime provided that the largest number in an array is larger than the sqrt of the number
+
+    public static boolean isPrime(long[] primes, long num){
+        for(int i = 0; primes[i] <= Math.sqrt(num) && i < primes.length; i++){
+            if(num%primes[i] == 0){
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    */
+    
+    public static long primeGreaterThan(long num){
+        for(long i = num+1; 1==1; i++){
+            if(isPrime(i)){
+                return i;
+            }
+        }
+    }
+    
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner in = new Scanner(System.in);
+        
+        int tests = in.nextInt();
+        
+       
+            
+        long[] primes = new long[100000];
+        long temp = 1;
+        for(int i = 1; i<primes.length; i++){
+            temp = primeGreaterThan(temp);
+            primes[i] = temp;
+        }
+
+        
+
+        for(int test = 1; test<=tests; test++){
+
+            int n = in.nextInt();
+            
+            long sum = 0;
+            
+            for(int e = 0; primes[e] <= n; e++){
+                sum+=primes[e];
+            }
+            System.out.println(sum);
+
+
+
+        }
+        
+    }
+}
