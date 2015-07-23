@@ -1,0 +1,73 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+    
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner in = new Scanner(System.in);
+        
+        int[][] a = new int[20][20];
+        
+        for(int i = 0; i < 20; i++){
+            for(int j = 0; j < 20; j++){
+                a[i][j] = in.nextInt();
+            }
+        }
+        
+        int max = 0;
+        
+        
+        /*
+        Check horizontal
+        */
+        for(int i = 0; i < 20; i++){
+            for(int j = 0; j < 17; j++){
+                int product = a[i][j]*a[i][j+1]*a[i][j+2]*a[i][j+3];
+                if(product > max){
+                    max = product;
+                }
+            }
+        }
+        /*
+        Check Vertical
+        */
+        for(int i = 0; i < 17; i++){
+            for(int j = 0; j < 20; j++){
+                int product = a[i][j]*a[i+1][j]*a[i+2][j]*a[i+3][j];
+                if(product > max){
+                    max = product;
+                }
+            }
+        }
+        /*
+        Check Diagonal
+        */
+        for(int i = 0; i < 17; i++){
+            for(int j = 0; j < 17; j++){
+                int product = a[i][j]*a[i+1][j+1]*a[i+2][j+2]*a[i+3][j+3];
+                if(product > max){
+                    max = product;
+                }
+            }
+        }
+
+        /*
+        Check other diagonal
+        */
+        for(int i = 0; i < 17; i++){
+            for(int j = 19; j >= 3; j--){
+                int product = a[i][j]*a[i+1][j-1]*a[i+2][j-2]*a[i+3][j-3];
+                if(product > max){
+                    max = product;
+                }
+            }
+        }
+        
+        System.out.println(max);
+        
+    }
+}
