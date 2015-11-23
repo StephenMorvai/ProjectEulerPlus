@@ -1,0 +1,61 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        
+        /*
+            2 -> 2
+            4 -> 4
+            8 -> 8
+            16 -> 7
+            32 -> 5
+            64 -> 10
+            128 -> 11
+            256 -> 13
+            512 -> 8
+            1024 -> 7
+            2048 -> 14
+            4096 -> 19
+            8192 -> 20
+        
+        
+        
+        
+        */
+        
+        
+        
+        
+        Scanner in = new Scanner(System.in);
+        
+        int t = in.nextInt();
+        
+        for(t=t;t>0;t--){
+            int n = in.nextInt();
+            
+            BigInteger a = new BigInteger("1");
+        
+            for(int i = 1; i <= n; i++){
+                a = a.multiply(new BigInteger("2"));
+            }
+            String num = a.toString();
+            
+            int sum = 0;
+            
+            for(int i = 0; i < num.length(); i++){
+                sum += Integer.parseInt(num.charAt(i) + "");
+            }
+            
+            System.out.println(sum);
+            
+        }
+        
+        
+    }
+}
