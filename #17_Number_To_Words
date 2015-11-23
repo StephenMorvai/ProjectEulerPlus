@@ -1,0 +1,180 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner in = new Scanner(System.in);
+        
+        int t = in.nextInt();
+        
+        for(t=t; t>0; t--){
+            long n = in.nextLong();
+            
+            System.out.println(convert(n));
+            
+        }
+    }
+    
+    public static String convert(long a){
+        
+        if(a < 20){
+            switch((int)a){
+                case 1:
+                    return "One";
+                case 2:
+                    return "Two";
+                case 3:
+                    return "Three";
+                case 4:
+                    return "Four";
+                case 5:
+                    return "Five";
+                case 6:
+                    return "Six";
+                case 7:
+                    return "Seven";
+                case 8:
+                    return "Eight";
+                case 9:
+                    return "Nine";
+                case 10:
+                    return "Ten";
+                case 11:
+                    return "Eleven";
+                case 12:
+                    return "Twelve";
+                case 13:
+                    return "Thirteen";
+                case 14:
+                    return "Fourteen";
+                case 15:
+                    return "Fifteen";
+                case 16:
+                    return "Sixteen";
+                case 17:
+                    return "Seventeen";
+                case 18:
+                    return "Eighteen";
+                case 19:
+                    return "Nineteen";
+                case 0:
+                    return "Zero";
+                default:
+                    return "negative";
+            }//end switch
+        }else if(a < 100){
+            long tens = a/10;
+            long ones = a%10;
+
+            String result = "";
+            
+            //System.out.println(tens + " " + ones);
+            
+            switch((int)tens){
+                case 2:
+                    result = "Twenty";
+                    break;
+                case 3:
+                    result = "Thirty";
+                    break;
+                case 4:
+                    result = "Forty";
+                    break;
+                case 5: 
+                    result = "Fifty";
+                    break;
+                case 6:
+                    result = "Sixty";
+                    break;
+                case 7: 
+                    result = "Seventy";
+                    break;
+                case 8:
+                    result = "Eighty";
+                    break;
+                case 9:
+                    result = "Ninety";
+                    break;
+                default:
+                    result = "";
+                    break;
+            }
+            
+            //System.out.println(result);
+            
+            switch((int)ones){
+                case 0:
+                    return result;
+                default:
+                    return result + " " + convert(ones);
+            }
+            
+        }else if(a<1000){
+            long hundreds = a/100;
+            long remainder = a%100;
+            
+            String result = "";
+            
+            result = convert(hundreds) + " Hundred";
+            
+            if(remainder != 0){
+                result = result +  " " + convert(remainder);
+            }
+            
+            return result;
+        }else if(a < 1000000){
+            long thousands = a/1000;
+            long remainder = a%1000;
+            
+            String result = "";
+            
+            result = convert(thousands) + " Thousand";
+            
+            if(remainder != 0){
+                result = result +  " " + convert(remainder);
+            }
+            
+            return result;
+            
+            
+        }else if(a < 1000000000){
+            long millions = a/1000000;
+            long remainder = a%1000000;
+            
+            String result = "";
+            
+            result = convert(millions) + " Million";
+            
+            if(remainder != 0){
+                result = result +  " " + convert(remainder);
+            }
+            
+            return result;
+            
+            
+        }else{
+            long billions = a/1000000000;
+            long remainder = a%1000000000;
+            
+            String result = "";
+            
+            if(billions == 1000){
+                return "One Trillion";
+            }
+            
+            result = convert(billions) + " Billion";
+            
+            if(remainder != 0){
+                result = result +  " " + convert(remainder);
+            }
+            
+            return result;
+        }
+    }
+    
+}
